@@ -30,8 +30,8 @@ class StyledLineChart extends StatelessWidget {
               getTouchedSpotIndicator: (barData, spotIndexes) {
                 return spotIndexes.map((index) {
                   return TouchedSpotIndicatorData(
-                    FlLine(color: Colors.transparent), // ✅ invisible line
-                    FlDotData(show: false),            // ✅ no dot
+                    FlLine(color: Colors.transparent),
+                    FlDotData(show: false),
                   );
                 }).toList();
               },              touchTooltipData: LineTouchTooltipData(

@@ -15,7 +15,6 @@ class DashboardView extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    // ✅ Apply validation ONLY on web
     if (kIsWeb && (screenWidth < 700 || screenHeight < 500)) {
       return Scaffold(
         appBar: AppBar(title: const Text("Pulseboard Dashboard")),
@@ -29,7 +28,6 @@ class DashboardView extends StatelessWidget {
       );
     }
 
-    // ✅ Normal layout below
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pulseboard Dashboard'),

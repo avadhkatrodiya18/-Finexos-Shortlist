@@ -40,7 +40,6 @@ class BubbleChartWidget extends StatelessWidget {
         return const Center(child: Text('No sensor data available.'));
       }
 
-      // ✅ Extract valid temperatures
       final validTemps = sensors
           .where((s) => s.temperature != null)
           .map((s) => s.temperature!)
@@ -93,8 +92,8 @@ class BubbleChartWidget extends StatelessWidget {
                               final sensor = sensors[index];
 
                               return ScatterTooltipItem(
-                                '', // Leave text blank when using children
-                                textStyle: const TextStyle(fontSize: 0), // Prevent default style
+                                '',
+                                textStyle: const TextStyle(fontSize: 0),
                                 children: [
                                   const TextSpan(
                                     text: '📍 Location: ',
