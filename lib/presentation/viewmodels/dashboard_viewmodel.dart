@@ -21,25 +21,23 @@ class DashboardViewModel extends GetxController {
     loadSensors();
   }
 
-  void loadSensors() {
+  void loadSensors({bool forceAllOffline = false}) {
     final rawSensors = _repository.fetchSensors();
 
     final updatedSensors = rawSensors.map((sensor) {
       SensorModel s = sensor;
 
-      // Simulate offline state
-      if (simulateOffline.value && s.id.hashCode % 2 == 0) {
+      if (!simulateAnomaly.value) {
+        s = s.copyWith(anomaly: 0);
+      }
+
+      if (simulateOffline.value && (forceAllOffline || s.id.hashCode % 2 == 0)) {
         s = s.copyWith(
           temperature: null,
           humidity: null,
           pressure: null,
           anomaly: -1,
         );
-      }
-
-      // Simulate no anomaly variation
-      if (!simulateAnomaly.value) {
-        s = s.copyWith(anomaly: 0);
       }
 
       return s;

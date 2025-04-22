@@ -15,7 +15,8 @@ class SensorModel {
     this.anomaly,
   });
 
-  bool get isOffline => anomaly == null || anomaly == -1;
+  bool get isOffline => anomaly == -1;
+
 
   SensorModel copyWith({
     double? temperature,
