@@ -1,3 +1,4 @@
+import 'package:finexos/utils/string_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../viewmodels/dashboard_viewmodel.dart';
@@ -9,19 +10,19 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        title: const Text(StringUtils.settingsTitle),
       ),
       body: Obx(() => ListView(
         padding: const EdgeInsets.all(16),
         children: [
           const Text(
-            "Simulate Sensor Conditions",
+            StringUtils.simulateSensorConditions,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
 
           SwitchListTile(
-            title: const Text("Simulate Offline Sensors"),
+            title: const Text(StringUtils.simulateOfflineSensors),
             value: viewModel.simulateOffline.value,
             onChanged: (val) {
               viewModel.simulateOffline.value = val;
@@ -31,7 +32,7 @@ class SettingsView extends StatelessWidget {
           const SizedBox(height: 10),
 
           SwitchListTile(
-            title: const Text("Randomize Anomalies"),
+            title: const Text(StringUtils.randomizeAnomalies),
             value: viewModel.simulateAnomaly.value,
             onChanged: (val) {
               viewModel.simulateAnomaly.value = val;

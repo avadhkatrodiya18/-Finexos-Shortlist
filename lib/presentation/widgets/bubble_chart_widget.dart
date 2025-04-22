@@ -1,3 +1,5 @@
+import 'package:finexos/utils/color_utils.dart';
+import 'package:finexos/utils/string_utils.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,10 +19,10 @@ class BubbleChartWidget extends StatelessWidget {
   });
 
   Color _getColor(int? anomaly) {
-    if (anomaly == null || anomaly == -1) return Colors.grey;
-    if (anomaly == 0) return Colors.green;
-    if (anomaly <= 50) return Colors.yellow;
-    return Colors.red;
+    if (anomaly == null || anomaly == -1) return ColorsUtils.grey;
+    if (anomaly == 0) return ColorsUtils.green;
+    if (anomaly <= 50) return ColorsUtils.yellow;
+    return ColorsUtils.red;
   }
 
   double _getBubbleSize(SensorModel sensor) {
@@ -37,7 +39,7 @@ class BubbleChartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (sensors.isEmpty) {
-        return const Center(child: Text('No sensor data available.'));
+        return const Center(child: Text(StringUtils.noSensorDataMessage));
       }
 
       final validTemps = sensors
@@ -52,13 +54,13 @@ class BubbleChartWidget extends StatelessWidget {
       return Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 6,
-        color: Colors.white,
+        color: ColorsUtils.white,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
               const Text(
-                "Sensor Bubble Chart",
+                StringUtils.sensorBubbleChart,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               const SizedBox(height: 12),
@@ -82,10 +84,10 @@ class BubbleChartWidget extends StatelessWidget {
                         enabled: true,
                         handleBuiltInTouches: true,
                         touchTooltipData: ScatterTouchTooltipData(
-                          tooltipBgColor: Colors.white,
+                          tooltipBgColor: ColorsUtils.white,
                           tooltipRoundedRadius: 8,
                           tooltipPadding: const EdgeInsets.all(12),
-                          tooltipBorder: BorderSide(color: Colors.indigo, width: 1.5),
+                          tooltipBorder: BorderSide(color: ColorsUtils.primaryColor, width: 1.5),
                           getTooltipItems: (ScatterSpot spot) {
                             final index = spot.x.toInt();
                             if (index >= 0 && index < sensors.length) {
@@ -96,28 +98,28 @@ class BubbleChartWidget extends StatelessWidget {
                                 textStyle: const TextStyle(fontSize: 0),
                                 children: [
                                   const TextSpan(
-                                    text: '📍 Location: ',
+                                    text: StringUtils.location,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.indigo,
+                                      color: ColorsUtils.primaryColor,
                                       fontSize: 12,
                                     ),
                                   ),
                                   TextSpan(
                                     text: '${sensor.location}\n',
-                                    style: const TextStyle(fontSize: 12, color: Colors.black87),
+                                    style: const TextStyle(fontSize: 12, color: ColorsUtils.black87),
                                   ),
                                   const TextSpan(
-                                    text: '🌡️ Temp: ',
+                                    text: StringUtils.temp,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.deepOrange,
+                                      color: ColorsUtils.deepOrange,
                                       fontSize: 12,
                                     ),
                                   ),
                                   TextSpan(
                                     text: '${sensor.temperature==null?0:sensor.temperature?.toStringAsFixed(1)}°C',
-                                    style: const TextStyle(fontSize: 12, color: Colors.black87),
+                                    style: const TextStyle(fontSize: 12, color: ColorsUtils.black87),
                                   ),
                                 ],
                               );
@@ -144,7 +146,7 @@ class BubbleChartWidget extends StatelessWidget {
                         drawHorizontalLine: true,
                         drawVerticalLine: false,
                         getDrawingHorizontalLine: (_) => FlLine(
-                          color: Colors.grey.withOpacity(0.2),
+                          color: ColorsUtils.grey.withOpacity(0.2),
                           strokeWidth: 1,
                         ),
                       ),
@@ -184,8 +186,8 @@ class BubbleChartWidget extends StatelessWidget {
                       borderData: FlBorderData(
                         show: true,
                         border: const Border(
-                          left: BorderSide(color: Colors.grey, width: 1),
-                          bottom: BorderSide(color: Colors.grey, width: 1),
+                          left: BorderSide(color: ColorsUtils.grey, width: 1),
+                          bottom: BorderSide(color: ColorsUtils.grey, width: 1),
                         ),
                       ),
                     ),
@@ -196,15 +198,15 @@ class BubbleChartWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
-                  _LegendItem(color: Colors.green, label: '0%'),
-                  _LegendItem(color: Colors.yellow, label: '1–50%'),
-                  _LegendItem(color: Colors.red, label: '51–100%'),
-                  _LegendItem(color: Colors.grey, label: 'Offline'),
+                  _LegendItem(color: ColorsUtils.green, label: '0%'),
+                  _LegendItem(color: ColorsUtils.yellow, label: '1–50%'),
+                  _LegendItem(color: ColorsUtils.red, label: '51–100%'),
+                  _LegendItem(color: ColorsUtils.grey, label: StringUtils.offline),
                 ],
               ),
               const SizedBox(height: 8),
               const Text(
-                "Y-Axis: Temperature (°C)\nX-Axis: Sensor Location (Line A, Line B...)",
+                StringUtils.yAxisTemperature,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic),
               ),

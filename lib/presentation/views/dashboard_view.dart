@@ -1,3 +1,5 @@
+import 'package:finexos/utils/color_utils.dart';
+import 'package:finexos/utils/string_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -17,10 +19,10 @@ class DashboardView extends StatelessWidget {
 
     if (kIsWeb && (screenWidth < 700 || screenHeight < 500)) {
       return Scaffold(
-        appBar: AppBar(title: const Text("Pulseboard Dashboard")),
+        appBar: AppBar(title: const Text(StringUtils.dashboardTitle)),
         body: const Center(
           child: Text(
-            "Please expand your browser window to at least 700px wide and 500px tall to view the dashboard.",
+            StringUtils.expandBrowserMessage,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16),
           ),
@@ -30,7 +32,7 @@ class DashboardView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pulseboard Dashboard'),
+        title: const Text(StringUtils.dashboardTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -45,16 +47,16 @@ class DashboardView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Sensor Overview',
+                StringUtils.sensorOverview,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12),
               Row(
                 children: [
-                  const Text("Bubble Size by: "),
+                  const Text(StringUtils.bubbleSizeBy),
                   const SizedBox(width: 8),
                   ChoiceChip(
-                    label: const Text("Humidity"),
+                    label: const Text(StringUtils.humidityChoiceLabel),
                     selected:
                     viewModel.metricType.value == MetricType.humidity,
                     onSelected: (_) =>
@@ -62,7 +64,7 @@ class DashboardView extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   ChoiceChip(
-                    label: const Text("Pressure"),
+                    label: const Text(StringUtils.pressureChoiceLabel),
                     selected:
                     viewModel.metricType.value == MetricType.pressure,
                     onSelected: (_) =>
@@ -80,17 +82,18 @@ class DashboardView extends StatelessWidget {
                     padding: const EdgeInsets.all(12),
                     child: Column(
                       children: [
-                        const Text(
-                          "Tap on a bubble to get value of metrics",
+                         Text(
+                          StringUtils.tapBubbleForMetrics,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
-                            color: Colors.black87,
+                            color: ColorsUtils.black87,
                           ),
                         ),
                         const SizedBox(height: 5),
                         const Text(
-                          "Tap on x-axis labels (e.g., Line A, Line B) to view full sensor details.",
+                          StringUtils.tapXAxisForSensorDetails
+                         ,
                           style:
                           TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
                         ),

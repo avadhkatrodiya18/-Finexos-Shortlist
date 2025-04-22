@@ -1,3 +1,4 @@
+import 'package:finexos/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -5,8 +6,8 @@ class AppTheme {
     primarySwatch: Colors.indigo,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.indigo,
-      foregroundColor: Colors.white,
+      backgroundColor: ColorsUtils.primaryColor,
+      foregroundColor: ColorsUtils.white,
     ),
     textTheme: const TextTheme(
       bodyMedium: TextStyle(fontSize: 16),

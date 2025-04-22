@@ -1,3 +1,5 @@
+import 'package:finexos/utils/color_utils.dart';
+import 'package:finexos/utils/string_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:get/get.dart';
@@ -15,8 +17,8 @@ class DetailsView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Details - ${sensor.location}'),
-        backgroundColor: Colors.indigo,
+        title: Text('${StringUtils.detailsTitlePrefix}${sensor.location}'),
+        backgroundColor: ColorsUtils.primaryColor,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -25,11 +27,11 @@ class DetailsView extends StatelessWidget {
             // Sensor Info Card
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: ColorsUtils.white,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: const [
                   BoxShadow(
-                    color: Colors.black12,
+                    color: ColorsUtils.black12,
                     blurRadius: 10,
                     offset: Offset(0, 5),
                   ),
@@ -39,11 +41,11 @@ class DetailsView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildInfoRow("📟 Sensor ID", sensor.id),
-                  _buildInfoRow("🌡️ Temperature", "${sensor.temperature?.toStringAsFixed(1) ?? 'N/A'} °C"),
-                  _buildInfoRow("💧 Humidity", "${sensor.humidity?.toStringAsFixed(1) ?? 'N/A'}%"),
-                  _buildInfoRow("🌬️ Pressure", "${sensor.pressure?.toStringAsFixed(1) ?? 'N/A'} hPa"),
-                  _buildInfoRow("🚨 Anomaly", sensor.anomaly == -1 ? 'Offline' : '${sensor.anomaly}%'),
+                  _buildInfoRow(StringUtils.sensorId, sensor.id),
+                  _buildInfoRow(StringUtils.temperature, "${sensor.temperature?.toStringAsFixed(1) ?? 'N/A'} °C"),
+                  _buildInfoRow(StringUtils.humidity, "${sensor.humidity?.toStringAsFixed(1) ?? 'N/A'}%"),
+                  _buildInfoRow(StringUtils.pressure, "${sensor.pressure?.toStringAsFixed(1) ?? 'N/A'} hPa"),
+                  _buildInfoRow(StringUtils.anomaly, sensor.anomaly == -1 ? StringUtils.offline : '${sensor.anomaly}%'),
                 ],
               ),
             ),
@@ -53,7 +55,7 @@ class DetailsView extends StatelessWidget {
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "📈 Hourly Temperature (08:00–18:00)",
+                StringUtils.hourlyTemperatureTitle,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
@@ -83,13 +85,13 @@ class DetailsView extends StatelessWidget {
           Expanded(
             child: Text(
               title,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black87),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: ColorsUtils.black87),
             ),
           ),
           const SizedBox(width: 8),
           Text(
             value,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.indigo),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: ColorsUtils.primaryColor),
           ),
         ],
       ),

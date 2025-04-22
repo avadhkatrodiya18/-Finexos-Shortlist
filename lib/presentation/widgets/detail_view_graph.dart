@@ -1,3 +1,4 @@
+import 'package:finexos/utils/color_utils.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class StyledLineChart extends StatelessWidget {
     return Card(
       elevation: 6,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      color: Colors.white,
+      color: ColorsUtils.white,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: LineChart(
@@ -30,12 +31,12 @@ class StyledLineChart extends StatelessWidget {
               getTouchedSpotIndicator: (barData, spotIndexes) {
                 return spotIndexes.map((index) {
                   return TouchedSpotIndicatorData(
-                    FlLine(color: Colors.transparent),
+                    FlLine(color: ColorsUtils.transparent),
                     FlDotData(show: false),
                   );
                 }).toList();
               },              touchTooltipData: LineTouchTooltipData(
-                tooltipBgColor: Colors.indigo.withOpacity(0.9),
+                tooltipBgColor: ColorsUtils.primaryColor.withOpacity(0.9),
                 tooltipRoundedRadius: 8,
                 fitInsideHorizontally: true,
                 fitInsideVertically: true,
@@ -50,7 +51,7 @@ class StyledLineChart extends StatelessWidget {
                     '🕒 Time: $hour:00\n🌡️ Temp: $y °C',
                     const TextStyle(
                       fontSize: 12,
-                      color: Colors.white,
+                      color: ColorsUtils.white,
                       fontWeight: FontWeight.w600,
                       height: 1.5,
                     ),
@@ -95,19 +96,19 @@ class StyledLineChart extends StatelessWidget {
               drawVerticalLine: true,
               horizontalInterval: 20,
               getDrawingHorizontalLine: (_) => FlLine(
-                color: Colors.grey.withOpacity(0.3),
+                color: ColorsUtils.grey.withOpacity(0.3),
                 strokeWidth: 1,
               ),
               getDrawingVerticalLine: (_) => FlLine(
-                color: Colors.grey.withOpacity(0.2),
+                color: ColorsUtils.grey.withOpacity(0.2),
                 strokeWidth: 1,
               ),
             ),
             borderData: FlBorderData(
               show: true,
               border: const Border(
-                left: BorderSide(color: Colors.grey, width: 1),
-                bottom: BorderSide(color: Colors.grey, width: 1),
+                left: BorderSide(color: ColorsUtils.grey, width: 1),
+                bottom: BorderSide(color: ColorsUtils.grey, width: 1),
               ),
             ),
             lineBarsData: [
@@ -115,7 +116,7 @@ class StyledLineChart extends StatelessWidget {
                 spots: dataPoints,
                 isCurved: true,
                 gradient: LinearGradient(
-                  colors: [Colors.indigo, Colors.blueAccent],
+                  colors: [ColorsUtils.primaryColor, ColorsUtils.blueAccent],
                 ),
                 barWidth: 3,
                 isStrokeCapRound: true,
@@ -123,8 +124,8 @@ class StyledLineChart extends StatelessWidget {
                   show: true,
                   gradient: LinearGradient(
                     colors: [
-                      Colors.indigo.withOpacity(0.3),
-                      Colors.transparent,
+                      ColorsUtils.primaryColor.withOpacity(0.3),
+                      ColorsUtils.transparent,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,

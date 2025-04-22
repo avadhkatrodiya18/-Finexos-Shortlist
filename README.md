@@ -45,7 +45,7 @@ lib/
 
 Architecture: Follows MVVM with domain-driven layering for better testability and modularity.
 
-State Management: Uses Riverpod for reactive variables and routing.
+State Management: Uses Getx for reactive variables and routing.
 
 Charts: Built using fl_chart, with dynamic bubble rendering and tooltips.
 
@@ -63,6 +63,6 @@ Clean UI with responsive layout for web
 
 Mocked sensor data without external APIs
 
-Built using Flutter 3.19+, Riverpod, and fl_chart. """
+Built using Flutter 3.19+, Getx, and fl_chart. """
 
 
